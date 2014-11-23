@@ -1,24 +1,12 @@
 $(function () {
-  var sin = [], cos = [];
-  for (var i = 0; i < 14; i += 0.5) {
-    sin.push([i, Math.sin(i)])
-  }
-  var plot = $.plot($("#placeholder"),
-        [ { data: sin }, { data: cos } ], {
-          series: {
-            lines: { show: true },
-            points: { show: true },
-            color: '#b0007c'
-          },
-          grid: { hoverable: true, clickable: true },
-          yaxis: { min: -1.2, max: 1.2 }
-        });
-  $("#placeholder").bind("plotclick", function (event, pos, item) {
-      if (item) {
-        $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
-        plot.highlight(item.series, item.datapoint);
-      }
+  var github_token = $('body').data('github-token');
+  $.get( "https://api.github.com/repos/jandlint/git_gong/milestones?access_token="+github_token, function( data ) {
+    console.log( "Open Issues: " + data[0]['open_issues']);
+    console.log( "Close Issues: " + data[0]['closed_issues']);
+    console.log( "Updated Time: " + moment(data[0]['updated_at']).format());
+    console.log( moment().format());
   });
-
-  setInterval(function () {alert("Hello")}, 3000);
 });
+
+
+

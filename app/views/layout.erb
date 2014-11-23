@@ -11,21 +11,20 @@
   <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon"> 
 
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <script src="/javascript/application.js"></script>
+  <script src="/javascript/moment.min.js"></script>
 
   <!-- GITGONG: Setup page title(s) below -->
   <title>GitGong</title>
 
   <!-- GITGONG: Custom theme scripts below -->
-  <script type="text/javascript">
-    
-  </script>
+
   <!-- <meta http-equiv="refresh" content="3" /> -->
 
 </head>
-<body>
+<body data-github-token="<%= ENV['github_token'] %>">
   <div class="container">
     <section id="top-bar">
       <div class="navbar navbar-fixed-top">
@@ -65,7 +64,7 @@
 
 <section id="body-content" class="container">
   <section id="full-width">
-  <!-- <p><%= yield %></p>  -->
+  <%= yield %>
   <p>&nbsp;</p>
   </section>
   <section id="full-width">
