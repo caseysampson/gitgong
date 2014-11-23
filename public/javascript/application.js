@@ -4,8 +4,9 @@ $(function () {
     console.log( "Open Issues: " + data[0]['open_issues']);
     console.log( "Close Issues: " + data[0]['closed_issues']);
     console.log( "Updated Time: " + moment(data[0]['updated_at']).format());
-    console.log( moment().format());
-  });
+    console.log( "Current Time: " + moment().format());
+  })
+  $.cookie('update_log', moment().format());
 });
 
 
