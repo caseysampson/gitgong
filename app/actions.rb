@@ -19,5 +19,3 @@ get '/' do
   take_repos
   erb :index
 end
-
-
