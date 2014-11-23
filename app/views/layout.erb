@@ -1,21 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <!-- GITGONG: Add Bootstrap CSS and JS below -->
+  <link href="./stylesheets/bootstrap.css" rel="stylesheet">
+  <link href="./stylesheets/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="./stylesheets/common.css" rel="stylesheet">
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <!-- GITGONG: Favicon -->
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon"> 
+  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon"> 
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascript/application.js"></script>
 
-  <title></title>
+  <!-- GITGONG: Setup page title(s) below -->
+  <title>GitGong</title>
+
+  <!-- GITGONG: Custom theme scripts below -->
+  <script type="text/javascript">
+    $(function () {
+      var sin = [], cos = [];
+      for (var i = 0; i < 14; i += 0.5) {
+        sin.push([i, Math.sin(i)])
+      }
+      var plot = $.plot($("#placeholder"),
+            [ { data: sin }, { data: cos } ], {
+              series: {
+                lines: { show: true },
+                points: { show: true },
+                color: '#b0007c'
+              },
+              grid: { hoverable: true, clickable: true },
+              yaxis: { min: -1.2, max: 1.2 }
+            });
+      $("#placeholder").bind("plotclick", function (event, pos, item) {
+          if (item) {
+            $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
+            plot.highlight(item.series, item.datapoint);
+          }
+      });
+    });
+  </script>
+  <!-- <meta http-equiv="refresh" content="3" /> -->
+
 </head>
 <body>
-  <%= yield %>
+  <div class="container">
+    <section id="top-bar">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <ul class="nav">
+              <li>
+                <a href="./ "style="padding-left: 0px"><img src="./images/gitgong.png" width="126px" height="18px"></a>
+              </li>
+              <li class="divider-vertical"></li>
+              <li>
+                <a href="#">
+                  Pulls &nbsp;<span class="label label-important">+12</span>
+                </a>
+              </li>
+              <li class="divider-vertical"></li>
+              <li>
+                <a href="#">
+                  Merges <span class="label label-important">+7</span>
+                </a>
+              </li>
+              <li class="divider-vertical"></li>
+              
+                
+              </li>
+            </ul>
+            <p class="user-link pull-right">
+              Lighthouse Labs Development Dashboard
+            <p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<section id="body-content" class="container">
+  <section id="full-width">
+  <!-- <p><%= yield %></p>  -->
+  <p>&nbsp;</p>
+  </section>
+  <section id="full-width">
+    <div class="row">
+      <div class="span6">
+        <div class="well well-w-top">
+          <div class="well-con height">
+            <div class="top-well">
+              <h1><i class="s-icon s-icon-posts"></i>Frontend</h1>
+            </div>
+            <div class="well-content">
+            <h2 class="well-description">Description 1</h2> <!-- GitGong / Update label here -->
+              <ul class="unstyled">
+                <li>
+                  <div class="progress progress-striped progress-success">
+                    <div class="bar" style="width: 30%;"></div> <!-- GitGong / GitHub API drives this value -->
+                  </div>
+                </li>
+              </ul>
+            <!-- <p class="well-description-small align-right plus-percent">1.1 GB of 3.25 GB used</p> -->
+            <h2 class="well-description">Description 2</h2> <!-- GitGong / Update label here -->
+            <ul class="unstyled">
+              <li>
+                <div class="progress progress-striped progress-danger">
+                  <div class="bar" style="width: 94%;"></div> <!-- GitGong / GitHub API drives this value -->
+                </div>
+              </li>
+            </ul>
+            
+            <h2 class="well-description">Description 3</h2> <!-- GitGong / Update label here -->
+            <ul class="unstyled">
+              <li>
+                <div class="progress progress-striped progress-success">
+                  <div class="bar" style="width: 40%;"></div> <!-- GitGong / GitHub API drives this value -->
+                </div>
+              </li>
+            </ul>
+            <!-- <p class="well-description-small align-right">99.989 People</p> -->
+          </div>
+          </div>
+        </div>
+    </div>
+      <div class="span6">
+        <div class="well well-w-top">
+          <div class="well-con height">
+            <div class="top-well">
+              <h1><i class="s-icon s-icon-editor"></i>Backend Rails</h1> 
+            </div>
+          <div class="well-content">
+            <h2 class="well-description">Description 1</h2> <!-- GitGong / Update label here -->
+              <ul class="unstyled">
+                <li>
+                  <div class="progress progress-striped progress-success">
+                    <div class="bar" style="width: 10%;"></div> <!-- GitGong / GitHub API drives this value -->
+                  </div>
+                </li>
+              </ul>
+            <!-- <p class="well-description-small align-right plus-percent">1.1 GB of 3.25 GB used</p> -->
+            <h2 class="well-description">Description 2</h2>
+            <ul class="unstyled">
+              <li>
+                <div class="progress progress-striped progress-danger">
+                  <div class="bar" style="width: 44%;"></div> <!-- GitGong / GitHub API drives this value -->
+                </div>
+              </li>
+            </ul>
+            
+            <h2 class="well-description">Description 3</h2> <!-- GitGong / Update label here -->
+            <ul class="unstyled">
+              <li>
+                <div class="progress progress-striped progress-success"> 
+                  <div class="bar" style="width: 84%;"></div> <!-- GitGong / GitHub API drives this value -->
+                </div>
+              </li>
+            </ul>
+            <!-- <p class="well-description-small align-right">99.989 People</p> -->
+          </div>
+    </div>
+  </div>
+</section>
+
+<section id="full-width">
+    <div class="row">
+      <div class="span6">
+        <div class="well well-w-top">
+          <div class="well-con height">
+            <div class="top-well">
+              <h1><i class="s-icon s-icon-posts"></i>Frontend</h1>
+            </div>
+            <div class="well-content">
+            <h2 class="well-description">Description 1</h2> <!-- GitGong / Update label here -->
+              <ul class="unstyled">
+                <li>
+                  <div class="progress progress-striped progress-success">
+                    <div class="bar" style="width: 30%;"></div> <!-- GitGong / GitHub API drives this value -->
+                  </div>
+                </li>
+              </ul>
+            <!-- <p class="well-description-small align-right plus-percent">1.1 GB of 3.25 GB used</p> -->
+            <h2 class="well-description">Description 2</h2> <!-- GitGong / Update label here -->
+            <ul class="unstyled">
+              <li>
+                <div class="progress progress-striped progress-danger">
+                  <div class="bar" style="width: 94%;"></div> <!-- GitGong / GitHub API drives this value -->
+                </div>
+              </li>
+            </ul>
+            
+            <h2 class="well-description">Description 3</h2> <!-- GitGong / Update label here -->
+            <ul class="unstyled">
+              <li>
+                <div class="progress progress-striped progress-success">
+                  <div class="bar" style="width: 40%;"></div> <!-- GitGong / GitHub API drives this value -->
+                </div>
+              </li>
+            </ul>
+            <!-- <p class="well-description-small align-right">99.989 People</p> -->
+          </div>
+          </div>
+        </div>
+    </div>
+      <div class="span6">
+        <div class="well well-w-top">
+          <div class="well-con height">
+            <div class="top-well">
+              <h1><i class="s-icon s-icon-capacity"></i>Backend Python</h1> 
+            </div>
+          <div class="well-content">
+            <h2 class="well-description">Description 1</h2> <!-- GitGong / Update label here -->
+              <ul class="unstyled">
+                <li>
+                  <div class="progress progress-striped progress-success">
+                    <div class="bar" style="width: 10%;"></div> <!-- GitGong / GitHub API drives this value -->
+                  </div>
+                </li>
+              </ul>
+            <!-- <p class="well-description-small align-right plus-percent">1.1 GB of 3.25 GB used</p> -->
+            <h2 class="well-description">Description 2</h2>
+            <ul class="unstyled">
+              <li>
+                <div class="progress progress-striped progress-danger">
+                  <div class="bar" style="width: 44%;"></div> <!-- GitGong / GitHub API drives this value -->
+                </div>
+              </li>
+            </ul>
+            
+            <h2 class="well-description">Description 3</h2> <!-- GitGong / Update label here -->
+            <ul class="unstyled">
+              <li>
+                <div class="progress progress-striped progress-success"> 
+                  <div class="bar" style="width: 84%;"></div> <!-- GitGong / GitHub API drives this value -->
+                </div>
+              </li>
+            </ul>
+            <!-- <p class="well-description-small align-right">99.989 People</p> -->
+          </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section id="footer">
+  <div class="footer">
+    <div class="container">
+      <div class="copyright">
+        Copyright &copy; 2014 GitGong
+      </div>
+    </div>
+  </div>
+</section> -->
+
 </body>
 </html>
