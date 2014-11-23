@@ -14,7 +14,6 @@ gem 'github_api'
 
 group :development, :test do
   gem 'pry'
-  gem 'better_errors'
   gem 'shotgun'
   gem 'sqlite3'
 end
