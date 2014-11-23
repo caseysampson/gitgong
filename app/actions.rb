@@ -9,13 +9,9 @@ helpers do
     @repos << github2.issues.milestones.all 
   end
 
-  # def extract_details
-  #   @repos.each do |repo|
-  #     repo.each do |milestone|
-  #       milestone.title
-  #     end
-  #   end
-  # end
+  def find_elements
+    
+  end
   
 end
 
