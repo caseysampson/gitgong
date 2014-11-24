@@ -17,33 +17,29 @@ This is what the object looks like:
   */
 };
 
-// var o = {
-//   'x': {
-//     title: 'hello',
-//     percentage: 5
-//   },
-//   'y': {
-//     title: "hi",
-//     percentage: 10
+// var render = function(object) {
+//   for (milestoneid in object){
+//     // clarify this line below, you're confused
+//     var value = object[milestoneid];
+//     $('h#' + milestoneid).css({});
+//     $('div#' + milestoneid).css({"width": milestoneid.percentage + "%"});
+//     if (milestoneid.percentage == 100) {
+//       // crazy shit
+//     }
+//     else {
+//       // not so crazy shit
+//     }
 //   }
 // }
-// var myvar = 'x';
-// myvar.title;
 
-var render = function(object) {
-  for (milestoneid in object){
-    // clarify this line below, you're confused
-    var value = object[milestoneid];
-    $('h#' + milestoneid).css({});
-    $('div#' + milestoneid).css({"width": milestoneid.percentage + "%"});
-    if (milestoneid.percentage == 100) {
-      // crazy shit
-    }
-    else {
-      // not so crazy shit
-    }
-  }
-}
+var renderMilestoneView = function(milestone_id, title, percentage) {
+  console.log(milestone_id, title, percentage);
+  var repo = $('.repository[data-milestone-id='+milestone_id+']');
+  repo.find('.percentage').css({
+    width: percentage + "%"
+  });
+  repo.find('.title').html(title);
+};
 
 // $(document).ready(function() {
 
@@ -67,12 +63,14 @@ $(function () {
       for (url in repositories) {
         $.get( repositories[url] + github_token, function( data ) {
             for (var i in data) {
-              mileobject[data[i].id] = {
-                title: data[i].title,
-                percentage: 100 * (data[i].open_issues / (data[i].open_issues + data[i].closed_issues))
-              };
+              var percentage = 100 * (data[i].closed_issues / (data[i].open_issues + data[i].closed_issues));
+              renderMilestoneView(data[i].id, data[i].title, percentage);
+              // mileobject[data[i].id] = {
+              //   title: data[i].title,
+              //   percentage: 
+              // };
             }
-          console.log(mileobject);
+          
         });
       }
       // render(mileobject)
