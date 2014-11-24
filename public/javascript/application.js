@@ -50,7 +50,7 @@ $(function () {
   var load = setInterval(
     function(){
       for (url in repositories) {
-        $.get( url + github_token, function( data ) {
+        $.get( repositories[url] + github_token, function( data ) {
             for (var i in data) {
               mileobject[data[i].id] = {
                 title: data[i].title,
@@ -60,6 +60,6 @@ $(function () {
           console.log(mileobject);
         });
       }
-      render(mileobject)
+      // render(mileobject)
     }, 5000) 
 });
