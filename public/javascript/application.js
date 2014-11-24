@@ -45,7 +45,7 @@ var renderMilestoneView = function(milestone_id, title, percentage) {
 
 // // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
 // var aud = document.createElement("iframe");
-// aud.setAttribute('src', "http://www.audioblocks.com/stock-audio/chinese-gong-sound-effect.html?searchid=3257497"); // replace with actual file path
+// aud.setAttribute('src', "/gong.wav"); // replace with actual file path
 // aud.setAttribute('width', '1px');
 // aud.setAttribute('height', '1px');
 // aud.setAttribute('scrolling', 'no');
