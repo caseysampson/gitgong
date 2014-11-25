@@ -1,4 +1,5 @@
 var repositories = [
+  // Our 4 demo milestones on the same repo:
   "https://api.github.com/repos/tinderforcats/tinder_integration_api/milestones?access_token=",
   "https://api.github.com/repos/tinderforcats/mobile_api/milestones?access_token=",
   "https://api.github.com/repos/tinderforcats/client/milestones?access_token=",
@@ -58,12 +59,8 @@ var getUpdates = function(){
         } 
       });
     }
-  }, 4000);
+  }, 3000); // Adjustable update timing in milliseconds
 };
-
-
-
-
 
 
 $(function () {
