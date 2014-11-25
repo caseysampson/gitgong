@@ -53,26 +53,6 @@
               </li>
               <li class="divider-vertical"></li>
               </li>
-              <li style="padding-top: 10px">
-                <div class="progress updateinterval" id="timingbar" style="width:400px"></div>
-                  <!-- <div class="bar" style="width: 30%;" id="timingbar"></div> -->
-                  <script>
-                    window.setTimeout(function() {
-                        var progressBar = new Progress.bar({ id: "progress5", autoRemove: false, backgroundSpeed: -10, type: "charge",showPercentage: true });
-                        progressBar.renderTo(document.getElementById('timingbar'));
-                         var percent = 0;
-                        window.setInterval(function() {
-                            percent = percent + 1;
-                            percent = percent >= 100 ? 0 : percent;
-                            progressBar.update(percent);
-                        }, 100);
-
-                    }, 500);
-                    </script>
-                
-              </li>
-              <!-- <li class="divider-vertical"></li>
-              </li> -->
             </ul>
 
             <p class="user-link pull-right">
