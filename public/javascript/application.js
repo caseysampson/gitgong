@@ -5,74 +5,67 @@ var repositories = [
   "https://api.github.com/repos/tinderforcats/REST_api/milestones?access_token="
 ]
 
-var mileobject = {
-  /*
-
-This is what the object looks like:
-
-  milestoneid: {
-    title: title
-    percentage: x%
-  }
-  */
-};
-
-// var render = function(object) {
-//   for (milestoneid in object){
-//     // clarify this line below, you're confused
-//     var value = object[milestoneid];
-//     $('h#' + milestoneid).css({});
-//     $('div#' + milestoneid).css({"width": milestoneid.percentage + "%"});
-//     if (milestoneid.percentage == 100) {
-//       // crazy shit
-//     }
-//     else {
-//       // not so crazy shit
-//     }
-//   }
-// }
+var gongstatus = {};
 
 var renderMilestoneView = function(milestone_id, title, percentage) {
-  console.log(milestone_id, title, percentage);
   var repo = $('.repository[data-milestone-id='+milestone_id+']');
-  repo.find('.percentage').css({
+  repo.find('.bar').css({
     width: percentage + "%"
   });
-  repo.find('.title').html(title);
+  repo.find('.well-description').html(title);
+  if (percentage == 100 && gongstatus[milestone_id]["has_gonged?"] == false) {
+    var aud = document.createElement("iframe");
+    aud.setAttribute('src', "/gong.wav"); // replace with actual file path
+    aud.setAttribute('width', '1px');
+    aud.setAttribute('height', '1px');
+    aud.setAttribute('scrolling', 'no');
+    aud.style.border = "0px";
+    document.body.appendChild(aud);
+    gongstatus[milestone_id]["has_gonged?"] = true;
+  }
 };
 
-// $(document).ready(function() {
+var requestsInProgress = 0;
 
-// // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-// var aud = document.createElement("iframe");
-// aud.setAttribute('src', "/gong.wav"); // replace with actual file path
-// aud.setAttribute('width', '1px');
-// aud.setAttribute('height', '1px');
-// aud.setAttribute('scrolling', 'no');
-// aud.style.border = "0px";
-// document.body.appendChild(aud);
+var getUpdates = function(){
+  console.log('getUpdates()');
+  var github_token = $('body').data('github-token');
+  var load = setTimeout(function() {
+    console.log("I'm updating!");
+    for (url in repositories) {
+      
+      requestsInProgress++;
+      console.log('sending request...');
+      var url = repositories[url] + github_token + '&_rndm=' + new Date().getTime();
+      console.log(url);
+      $.get(url, function(data) {
+        console.log('request complete.');
+        for (var i in data) {
+          var percentage = 100 * (data[i].closed_issues / (data[i].open_issues + data[i].closed_issues));
+          // debugger;
+          if (gongstatus[data[i].id] === undefined) {
+            gongstatus[data[i].id] = {};
+            gongstatus[data[i].id]["has_gonged?"] = false;
+          }
+          renderMilestoneView(data[i].id, data[i].title, percentage);
+        };
 
-// });
+        requestsInProgress--;
+        console.log(requestsInProgress+ ' requests remaining...');
 
-//alternative gong sound: http://gooong.com/media/gong.wav
+        if(requestsInProgress == 0) {
+          getUpdates();
+        } 
+      });
+    }
+  }, 4000);
+};
+
+
+
+
+
 
 $(function () {
-  var github_token = $('body').data('github-token');
-  var load = setInterval(
-    function(){
-      for (url in repositories) {
-        $.get( repositories[url] + github_token, function( data ) {
-            for (var i in data) {
-              var percentage = 100 * (data[i].closed_issues / (data[i].open_issues + data[i].closed_issues));
-              renderMilestoneView(data[i].id, data[i].title, percentage);
-              // mileobject[data[i].id] = {
-              //   title: data[i].title,
-              //   percentage: 
-              // };
-            }
-          
-        });
-      }
-      // render(mileobject)
-    }, 5000) 
+  getUpdates();
 });
