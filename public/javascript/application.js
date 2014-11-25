@@ -25,11 +25,21 @@ var renderMilestoneView = function(milestone_id, title, percentage) {
   }
 };
 
-$(function () {
+var requestsInProgress = 0;
+
+var getUpdates = function(){
+  console.log('getUpdates()');
   var github_token = $('body').data('github-token');
-  var load = setInterval(function() {
+  var load = setTimeout(function() {
+    console.log("I'm updating!");
     for (url in repositories) {
-      $.get( repositories[url] + github_token, function(data) {
+      
+      requestsInProgress++;
+      console.log('sending request...');
+      var url = repositories[url] + github_token + '&_rndm=' + new Date().getTime();
+      console.log(url);
+      $.get(url, function(data) {
+        console.log('request complete.');
         for (var i in data) {
           var percentage = 100 * (data[i].closed_issues / (data[i].open_issues + data[i].closed_issues));
           // debugger;
@@ -39,7 +49,23 @@ $(function () {
           }
           renderMilestoneView(data[i].id, data[i].title, percentage);
         };
+
+        requestsInProgress--;
+        console.log(requestsInProgress+ ' requests remaining...');
+
+        if(requestsInProgress == 0) {
+          getUpdates();
+        } 
       });
     }
-  }, 5000);
+  }, 4000);
+};
+
+
+
+
+
+
+$(function () {
+  getUpdates();
 });
