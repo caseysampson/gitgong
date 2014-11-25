@@ -301,7 +301,7 @@ th {
 }
 
 /* Window.updateinterval timing bar */
-.updateinterval {
+.updateinterval-progress {
     height: 4px;
     border-radius: 2px;
     -webkit-border-radius: 20px;
@@ -314,8 +314,8 @@ th {
 /* Progres bar */
 .progress {
     height: 20px;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
     background: #0e0e0e;
     padding:  5px;
 }
@@ -323,7 +323,7 @@ th {
    background-size: 11px 10px;
    box-shadow: 0 0 1px 0 #000000, 0 1px 1px #fff inset;
    border-radius: 10px;
-   height: 20px;
+   height: 18px;
 }
 .table td {
     background: url(images/td-bg-1.jpg) repeat;

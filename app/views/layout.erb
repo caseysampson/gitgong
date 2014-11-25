@@ -17,6 +17,7 @@
   <script src="/javascript/moment.min.js"></script>
   <script src="/javascript/jquery.cookie.js"></script>
   <script src="/javascript/howler.js"></script>
+  <script src="/javascript/progress.js"></script>
 
   <!-- GITGONG: Setup page title(s) below -->
   <title>GitGong</title>
@@ -53,11 +54,24 @@
               <li class="divider-vertical"></li>
               </li>
               <li style="padding-top: 10px">
-                <div class="progress updateinterval" style="height: 2px; width: 400px;">
-                  <div class="bar" style="width: 30%;"></div>
-                </div>
-              <!-- </li>
-              <li class="divider-vertical"></li>
+                <div class="progress updateinterval" id="timingbar" style="width:400px"></div>
+                  <!-- <div class="bar" style="width: 30%;" id="timingbar"></div> -->
+                  <script>
+                    window.setTimeout(function() {
+                        var progressBar = new Progress.bar({ id: "progress5", autoRemove: false, backgroundSpeed: -10, type: "charge",showPercentage: true });
+                        progressBar.renderTo(document.getElementById('timingbar'));
+                         var percent = 0;
+                        window.setInterval(function() {
+                            percent = percent + 1;
+                            percent = percent >= 100 ? 0 : percent;
+                            progressBar.update(percent);
+                        }, 100);
+
+                    }, 500);
+                    </script>
+                
+              </li>
+              <!-- <li class="divider-vertical"></li>
               </li> -->
             </ul>
 
@@ -82,7 +96,7 @@
         <div class="well well-w-top">
           <div class="well-con height">
             <div class="top-well">
-              <h1><i class="s-icon s-icon-posts"></i>Client</h1>
+              <h1><i class="s-icon s-icon-stat"></i>Client</h1>
             </div>
             <div class="well-content">
               <div class='repository' data-milestone-id='877728'> <!-- must fill in! -->
@@ -126,7 +140,7 @@
         <div class="well well-w-top">
           <div class="well-con height">
             <div class="top-well">
-              <h1><i class="s-icon s-icon-editor"></i>REST_api</h1> 
+              <h1><i class="s-icon s-icon-notify"></i>REST_api</h1> 
             </div>
           <div class="well-content">
             <div class='repository' data-milestone-id='877740'>
