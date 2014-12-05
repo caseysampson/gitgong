@@ -1,8 +1,13 @@
 GitGONG
 =============
 
+GitGONG is a Lighthouse Labs midterm project where the students were given (perhaps less than) five days to make an app using the Sinatra Framework. It (theoretically) allows one to track multiple milestones (three at the moment) of multiple (four at the moment) Github repositories via a dashboard with dynamic progress bars. As soon as a milestone is complete, a gong rings through the app.
+
+Information is gleaned from the Github API via JQuery AJAX requests. The majority of the technical knowledge was learned from scratch during this time period.
+
 Brought to you by Team GitGong: Jan Lintag, Casey Sampson, Ashley Theiss
-Built during the November 2014 cohort at Lighthouse Labs, Vancouver BC
+Built during the November 2014 cohort at Lighthouse Labs, Vancouver BC.
+
 
 ## Getting Started
 
